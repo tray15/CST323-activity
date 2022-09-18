@@ -12,7 +12,7 @@ class MyLogger2 implements ILogger
     {
         if (self::$logger == null) {
             self::$logger = new Logger('playLaravel');
-            self::$logger->pushHandler(new LogglyHandler('8c20c58c-5824-4113-894a-fcf30c8e9f76/tag/cst323_logfile_heroku_upload', Logger::DEBUG));
+            self::$logger->pushHandler(new LogglyHandler('8c20c58c-5824-4113-894a-fcf30c8e9f76/tag/heroku', Logger::DEBUG));
         }
         return self::$logger;
     }
