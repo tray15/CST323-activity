@@ -4,7 +4,7 @@ namespace App\Services\Business;
 use App\Models\UserModel;
 use App\Services\Data\SecurityDAO;
 use Exception;
-use App\Services\Utility\MyLogger;
+use App\Services\Utility\MyLogger2;
 
 class SecurityService
 {
@@ -13,7 +13,7 @@ class SecurityService
     
     function __construct() {
         $this->dao = new SecurityDAO();
-        $this->logger = new MyLogger();
+        $this->logger = new MyLogger2();
     }
     public function login(UserModel $user)
     {

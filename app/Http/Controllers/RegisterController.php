@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\UserModel;
 use App\Services\Business\CrudService;
 use Illuminate\Http\Request;
-use App\Services\Utility\MyLogger;
+use App\Services\Utility\MyLogger2;
 
 class RegisterController extends Controller
 {
@@ -15,7 +15,7 @@ class RegisterController extends Controller
     
     public function saveUser(Request $request)
     {
-        $logger = new MyLogger();
+        $logger = new MyLogger2();
         
         $logger->info("Entering RegisterController::saveUser()");
         

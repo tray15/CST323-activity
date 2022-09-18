@@ -6,7 +6,7 @@ use App\Models\UserUpdateModel;
 use App\Services\Data\CrudDAO;
 use Illuminate\Support\Facades\DB;
 use Exception;
-use App\Services\Utility\MyLogger;
+use App\Services\Utility\MyLogger2;
 
 class CrudService
 {
@@ -15,7 +15,7 @@ class CrudService
     
     function __construct() {
         $this->dao = new CrudDAO();
-        $this->logger = new MyLogger();
+        $this->logger = new MyLogger2();
     }
     
     public function listAllUsers() {

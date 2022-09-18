@@ -7,12 +7,12 @@ use Exception;
 use App\Models\UserModel;
 use App\Services\Business\CrudService;
 use App\Services\Business\SecurityService;
-use App\Services\Utility\MyLogger;
+use App\Services\Utility\MyLogger2;
 
 class LoginController extends Controller
 {
     public function index(Request $request) {
-        $logger = new MyLogger();
+        $logger = new MyLogger2();
         try {
             $logger->info("Entering LoginController::index()");
             
@@ -33,7 +33,7 @@ class LoginController extends Controller
             $result = $securityService->login($user);
             
             if ($result) {
-                $logger->info("Exiting LoginController()::index() with passing");
+                $logger->info("Exiting LoginController()::index()");
                 
                 $users = $service->listAllUsers();
                 
