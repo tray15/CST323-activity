@@ -14,27 +14,27 @@ class MyLogger implements ILogger
             self::$logger = new Logger('playLaravel');
             self::$logger->pushHandler(new StreamHandler('php://stdout', Logger::DEBUG));
         }
-        return null;
+        return self::$logger;
     }
     
-    public function debug($message, $data=array())
+    public static function debug($message)
     {
-        self::getLogger()->addDebug($message, $data);
+        self::getLogger()->debug($message);
     }
     
-    public function warning($message, $data=array())
+    public static function warning($message)
     {
-        self::getLogger()->addWarning($message, $data);
+        self::getLogger()->warning($message);
     }
     
-    public function error($message, $data=array())
+    public static function error($message)
     {
-        self::getLogger()->addError($message, $data);
+        self::getLogger()->error($message);
     }
     
-    public function info($message, $data=array())
+    public static function info($message)
     {
-        self::getLogger()->addInfo($message, $data);
+        self::getLogger()->info($message);
     }
     
 }

@@ -4,9 +4,9 @@ namespace App\Services\Utility;
 interface ILogger
 {
     static function getLogger();
-    public function debug($param);
-    public function info($param);
-    public function warning($param);
-    public function error($param);
+    public static function debug($param);
+    public static function info($param);
+    public static function warning($param);
+    public static function error($param);
 }
 
