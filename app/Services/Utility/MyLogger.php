@@ -1,33 +1,40 @@
 <?php
 namespace App\Services\Utility;
 
-use Illuminate\Support\Facades\Log;
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
 
 class MyLogger implements ILogger
 {
+    private static $logger = null;
+    
     static function getLogger()
     {
+        if (self::$logger == null) {
+            self::$logger = new Logger('playLaravel');
+            self::$logger->pushHandler(new StreamHandler('php://stdout', Logger::DEBUG));
+        }
         return null;
     }
     
-    public function debug($param)
+    public function debug($message, $data=array())
     {
-        return Log::debug($param);
+        self::getLogger()->addDebug($message, $data);
     }
     
-    public function warning($param)
+    public function warning($message, $data=array())
     {
-        return Log::warning($param);
+        self::getLogger()->addWarning($message, $data);
     }
     
-    public function error($param)
+    public function error($message, $data=array())
     {
-        return Log::error($param);
+        self::getLogger()->addError($message, $data);
     }
     
-    public function info($param)
+    public function info($message, $data=array())
     {
-        return Log::info($param);
+        self::getLogger()->addInfo($message, $data);
     }
     
 }
