@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 
 class CrudController extends Controller
 {
-    
     public function index()
     {
         $service = new CrudService();

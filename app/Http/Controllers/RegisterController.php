@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\UserModel;
 use App\Services\Business\CrudService;
 use Illuminate\Http\Request;
+use App\Services\Utility\MyLogger;
 
 class RegisterController extends Controller
 {
@@ -14,16 +15,27 @@ class RegisterController extends Controller
     
     public function saveUser(Request $request)
     {
+        $logger = new MyLogger();
+        
+        $logger->info("Entering RegisterController::saveUser()");
+        
         $service = new CrudService();
         $username = $request->get("username");
         $password = $request->get('password');
+        
+        $logger->info("Attempting RegisterController::saveUser() with parameters:", array(
+            "username" => $username,
+            "password" => $password
+        ));
         
         $this->validateForm($request);
         
         $user = new UserModel($username, $password);
         if ($service->create($user)) {
+            $logger->info("RegisterController::saveUser() successful");
             return view('login');
         } else {
+            $logger->info("RegisterController::saveUser() failed");
             return view('registerFailed');
         }
     }

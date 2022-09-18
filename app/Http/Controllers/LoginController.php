@@ -7,11 +7,14 @@ use Exception;
 use App\Models\UserModel;
 use App\Services\Business\CrudService;
 use App\Services\Business\SecurityService;
+use App\Services\Utility\MyLogger;
 
 class LoginController extends Controller
 {
     public function index(Request $request) {
+        $logger = new MyLogger();
         try {
+            $logger->info("Entering LoginController::index()");
             
             $this->validateForm($request);
             
@@ -20,17 +23,27 @@ class LoginController extends Controller
             
             $username = $request->input('username');
             $password = $request->input('password');
+            
+            $logger->info("User parameters are:", array(
+                "username" => $username,
+                "password" => $password
+            ));
 
             $user = new UserModel($username, $password);
             $result = $securityService->login($user);
             
             if ($result) {
+                $logger->info("Exiting LoginController()::index() with passing");
+                
                 $users = $service->listAllUsers();
                 
                 return view('allUsers')->with('users', $users);
             } else
+                $logger->info("Exiting LoginController()::index() with failure");
+                
                 return view('loginFailed');
         } catch (Exception $e) {
+            $logger->error("Exception LoginController::index()" . $e->getMessage());
             return $e->getMessage();
         }
     }
